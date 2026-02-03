@@ -10,6 +10,7 @@ const blog = defineCollection({
         tags: z.array(z.string()).optional(),
         draft: z.boolean().default(false),
         lang: z.enum(["ja", "en"]).default("ja"),
+        image: z.string().optional(),
     }),
 });
 

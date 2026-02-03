@@ -1,8 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import "../../styles/main.css";
+import { SEO } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
 
 export const prerender = true;
+
+const SITE_URL = "https://tomodevelops.com";
 
 const allPosts = await getCollection("blog", ({ data }) => {
     return data.draft !== true;
@@ -26,8 +30,29 @@ function formatDate(date: Date, lang: string): string {
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="description" content="Blog posts by TomoDevelops" />
-        <title>Blog | TomoDevelops</title>
+        <SEO
+            title="Blog | TomoDevelops"
+            description="Thoughts on web development, projects, and technology by TomoDevelops."
+            canonical={`${SITE_URL}/blog`}
+            openGraph={{
+                basic: {
+                    title: "Blog | TomoDevelops",
+                    type: "website",
+                    image: `${SITE_URL}/images/og-default.png`,
+                    url: `${SITE_URL}/blog`,
+                },
+                optional: {
+                    siteName: "TomoDevelops",
+                    locale: "ja_JP",
+                },
+            }}
+            twitter={{
+                card: "summary_large_image",
+                site: "@tomodevelops",
+                creator: "@tomodevelops",
+            }}
+        />
+        <ViewTransitions />
         <link
             rel="preload"
             href="/fonts/Terminess-Regular.ttf"
@@ -157,8 +182,8 @@ function formatDate(date: Date, lang: string): string {
                 }
             }
 
-            // Run on page load
-            filterPostsByLocale();
+            // Run on page load and after View Transitions navigation
+            document.addEventListener("astro:page-load", filterPostsByLocale);
 
             // Listen for storage changes (if locale changes in another tab)
             window.addEventListener("storage", (e) => {

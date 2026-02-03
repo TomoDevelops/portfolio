@@ -1,6 +1,22 @@
 ---
 import "../styles/main.css";
 import App from "../components/App";
+import { SEO } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
+
+const SITE_URL = "https://tomodevelops.com";
+
+const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "TomoDevelops",
+    url: SITE_URL,
+    jobTitle: "Full-Stack Developer",
+    sameAs: [
+        "https://github.com/tomodevelops",
+        "https://twitter.com/tomodevelops",
+    ],
+};
 ---
 
 <html lang="ja">
@@ -9,8 +25,35 @@ import App from "../components/App";
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="description" content="Full-stack developer portfolio" />
-        <title>TomoDevelops</title>
+        <SEO
+            title="TomoDevelops | Full-Stack Developer"
+            description="Full-stack developer specializing in modern web technologies. View my portfolio, projects, and blog."
+            canonical={SITE_URL}
+            openGraph={{
+                basic: {
+                    title: "TomoDevelops | Full-Stack Developer",
+                    type: "website",
+                    image: `${SITE_URL}/images/og-default.png`,
+                    url: SITE_URL,
+                },
+                optional: {
+                    siteName: "TomoDevelops",
+                    locale: "ja_JP",
+                },
+            }}
+            twitter={{
+                card: "summary_large_image",
+                site: "@tomodevelops",
+                creator: "@tomodevelops",
+            }}
+            languageAlternates={[
+                { hrefLang: "ja", href: SITE_URL },
+                { hrefLang: "en", href: SITE_URL },
+                { hrefLang: "x-default", href: SITE_URL },
+            ]}
+        />
+        <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+        <ViewTransitions />
         <link
             rel="preload"
             href="/fonts/Terminess-Regular.ttf"

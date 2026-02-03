@@ -1,8 +1,12 @@
 ---
 import { getCollection, render } from "astro:content";
 import "../../styles/main.css";
+import { SEO } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
 
 export const prerender = true;
+
+const SITE_URL = "https://tomodevelops.com";
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -24,6 +28,36 @@ function formatDate(date: Date, lang: string): string {
 }
 
 const lang = post.data.lang;
+const canonicalUrl = `${SITE_URL}/blog/${post.id}`;
+const pageTitle = `${post.data.title} | TomoDevelops`;
+const ogImage = post.data.image
+    ? (post.data.image.startsWith("http") ? post.data.image : `${SITE_URL}${post.data.image}`)
+    : `${SITE_URL}/images/og-default.png`;
+
+const blogPostJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.description,
+    url: canonicalUrl,
+    image: ogImage,
+    datePublished: post.data.date.toISOString(),
+    author: {
+        "@type": "Person",
+        name: "TomoDevelops",
+        url: SITE_URL,
+    },
+    publisher: {
+        "@type": "Person",
+        name: "TomoDevelops",
+        url: SITE_URL,
+    },
+    ...(post.data.tags && { keywords: post.data.tags.join(", ") }),
+    mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalUrl,
+    },
+};
 ---
 
 <html lang={lang}>
@@ -32,8 +66,35 @@ const lang = post.data.lang;
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="description" content={post.data.description} />
-        <title>{post.data.title} | TomoDevelops</title>
+        <SEO
+            title={pageTitle}
+            description={post.data.description}
+            canonical={canonicalUrl}
+            openGraph={{
+                basic: {
+                    title: pageTitle,
+                    type: "article",
+                    image: ogImage,
+                    url: canonicalUrl,
+                },
+                optional: {
+                    siteName: "TomoDevelops",
+                    locale: lang === "ja" ? "ja_JP" : "en_US",
+                },
+                article: {
+                    publishedTime: post.data.date.toISOString(),
+                    authors: ["TomoDevelops"],
+                    tags: post.data.tags,
+                },
+            }}
+            twitter={{
+                card: "summary_large_image",
+                site: "@tomodevelops",
+                creator: "@tomodevelops",
+            }}
+        />
+        <script type="application/ld+json" set:html={JSON.stringify(blogPostJsonLd)} />
+        <ViewTransitions />
         <link
             rel="preload"
             href="/fonts/Terminess-Regular.ttf"

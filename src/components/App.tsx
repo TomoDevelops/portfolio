@@ -59,6 +59,9 @@ export default function App() {
             className={`min-h-screen ${isLoading ? "overflow-hidden" : ""}`}
             aria-busy={isLoading ? "true" : "false"}
         >
+            {/* Subtle noise texture overlay for depth */}
+            <div className="noise-overlay" aria-hidden="true" />
+
             {isLoading && (
                 <div
                     className="fixed inset-0 z-[999] flex items-center justify-center bg-navy transition-opacity duration-300"

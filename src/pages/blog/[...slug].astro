@@ -111,59 +111,77 @@ const blogPostJsonLd = {
         />
     </head>
     <body class="antialiased selection:bg-green selection:text-navy" data-post-lang={lang}>
-        <div class="min-h-screen">
-            <header class="py-8 border-b border-lightest-navy/60">
+        <!-- Noise texture overlay -->
+        <div class="noise-overlay" aria-hidden="true"></div>
+
+        <div class="min-h-screen relative">
+            <!-- Background effects -->
+            <div class="fixed inset-0 pointer-events-none" aria-hidden="true">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(100,255,218,0.08),transparent)]"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_90%_80%,rgba(196,181,253,0.04),transparent)]"></div>
+            </div>
+
+            <header class="relative z-10 py-6 border-b border-lightest-navy/40">
                 <div class="max-w-3xl mx-auto px-6 sm:px-8">
                     <a
                         href="/blog"
-                        class="text-slate/70 hover:text-green transition-colors font-mono text-sm"
+                        class="inline-flex items-center gap-2 text-slate/70 hover:text-green transition-all duration-300 font-mono text-sm group"
                     >
-                        &larr; Back to Blog
+                        <span class="transform group-hover:-translate-x-1 transition-transform duration-300">&larr;</span>
+                        <span>Back to Blog</span>
                     </a>
                 </div>
             </header>
 
-            <main class="py-16 sm:py-20">
+            <main class="relative z-10 py-16 sm:py-20">
                 <div class="max-w-3xl mx-auto px-6 sm:px-8">
-                    <article>
-                        <header class="mb-12">
-                            <time
-                                datetime={post.data.date.toISOString()}
-                                class="text-sm font-mono text-slate/60"
-                            >
-                                {formatDate(post.data.date, lang)}
-                            </time>
-                            <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold text-lightest-slate tracking-tight leading-tight">
+                    <article class="article-content">
+                        <!-- Article header -->
+                        <header class="mb-12 article-header">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-2 h-2 rounded-full bg-green/60"></div>
+                                <time
+                                    datetime={post.data.date.toISOString()}
+                                    class="text-sm font-mono text-slate/60"
+                                >
+                                    {formatDate(post.data.date, lang)}
+                                </time>
+                            </div>
+                            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-lightest-slate tracking-tight leading-tight article-title">
                                 {post.data.title}
                             </h1>
-                            <p class="mt-4 text-lg text-slate/85">
+                            <p class="mt-5 text-lg sm:text-xl text-slate/80 leading-relaxed">
                                 {post.data.description}
                             </p>
                             {post.data.tags && post.data.tags.length > 0 && (
                                 <div class="flex flex-wrap gap-2 mt-6">
                                     {post.data.tags.map((tag) => (
-                                        <span class="px-2.5 py-1 text-xs font-mono rounded border border-lightest-navy/60 text-slate/70 bg-lightest-navy/10">
+                                        <span class="px-3 py-1.5 text-xs font-mono rounded-md border border-lightest-navy/40 text-slate/70 bg-lightest-navy/15 hover:border-green/30 hover:text-slate transition-all duration-300">
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
                             )}
+                            <div class="mt-8 h-px bg-gradient-to-r from-green/40 via-lightest-navy/40 to-transparent"></div>
                         </header>
 
-                        <div class="prose prose-invert prose-slate max-w-none
+                        <!-- Article content -->
+                        <div class="prose prose-invert prose-slate max-w-none article-body
                             prose-headings:text-lightest-slate prose-headings:font-bold prose-headings:tracking-tight
-                            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-                            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+                            prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-lightest-navy/30
+                            prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
                             prose-p:text-slate prose-p:leading-relaxed prose-p:mb-6
-                            prose-a:text-green prose-a:no-underline hover:prose-a:underline
+                            prose-a:text-green prose-a:no-underline prose-a:border-b prose-a:border-green/30 hover:prose-a:border-green prose-a:transition-colors
                             prose-strong:text-lightest-slate prose-strong:font-bold
-                            prose-code:text-green prose-code:bg-lightest-navy/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
-                            prose-pre:bg-light-navy prose-pre:border prose-pre:border-lightest-navy/60 prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto
-                            prose-ul:text-slate prose-ul:space-y-2
-                            prose-ol:text-slate prose-ol:space-y-2
-                            prose-li:leading-relaxed
-                            prose-blockquote:border-l-green prose-blockquote:text-slate/85 prose-blockquote:italic
-                            prose-hr:border-lightest-navy/60
+                            prose-code:text-green prose-code:bg-light-navy/60 prose-code:px-2 prose-code:py-1 prose-code:rounded-md prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none prose-code:border prose-code:border-lightest-navy/30
+                            prose-pre:bg-light-navy/80 prose-pre:border prose-pre:border-lightest-navy/50 prose-pre:rounded-xl prose-pre:p-5 prose-pre:overflow-x-auto prose-pre:shadow-[0_0_30px_rgba(0,0,0,0.3)]
+                            prose-ul:text-slate prose-ul:space-y-3
+                            prose-ol:text-slate prose-ol:space-y-3
+                            prose-li:leading-relaxed prose-li:pl-2
+                            prose-li:marker:text-green/60
+                            prose-blockquote:border-l-2 prose-blockquote:border-green/50 prose-blockquote:bg-light-navy/30 prose-blockquote:rounded-r-lg prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:text-slate/90 prose-blockquote:italic prose-blockquote:not-italic
+                            prose-hr:border-lightest-navy/40 prose-hr:my-12
+                            prose-img:rounded-xl prose-img:border prose-img:border-lightest-navy/40
                         ">
                             <Content />
                         </div>
@@ -171,19 +189,122 @@ const blogPostJsonLd = {
                 </div>
             </main>
 
-            <footer class="py-8 border-t border-lightest-navy/60">
-                <div class="max-w-3xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <a
-                        href="/blog"
-                        class="text-slate/70 hover:text-green transition-colors font-mono text-sm"
-                    >
-                        &larr; Back to Blog
-                    </a>
-                    <p class="text-xs text-slate/60 font-mono">
-                        &copy; 2026 TomoDevelops
-                    </p>
+            <footer class="relative z-10 py-10 border-t border-lightest-navy/40">
+                <div class="max-w-3xl mx-auto px-6 sm:px-8">
+                    <!-- Author card -->
+                    <div class="mb-10 p-6 rounded-xl border border-lightest-navy/40 bg-light-navy/20">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green/20 to-purple/20 flex items-center justify-center border border-lightest-navy/40">
+                                <span class="text-green font-bold text-lg">T</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-bold text-lightest-slate">TomoDevelops</div>
+                                <div class="text-sm text-slate/70 mt-1">Web Developer</div>
+                                <div class="flex gap-3 mt-3">
+                                    <a
+                                        href="https://github.com/TomoDevelops"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-slate/50 hover:text-green transition-colors duration-300"
+                                        aria-label="GitHub"
+                                    >
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                        </svg>
+                                    </a>
+                                    <a
+                                        href="https://twitter.com/TomoDevelops"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-slate/50 hover:text-green transition-colors duration-300"
+                                        aria-label="Twitter"
+                                    >
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <a
+                            href="/blog"
+                            class="inline-flex items-center gap-2 text-slate/70 hover:text-green transition-all duration-300 font-mono text-sm group"
+                        >
+                            <span class="transform group-hover:-translate-x-1 transition-transform duration-300">&larr;</span>
+                            <span>Back to Blog</span>
+                        </a>
+                        <p class="text-xs text-slate/50 font-mono">
+                            &copy; 2026 TomoDevelops
+                        </p>
+                    </div>
                 </div>
             </footer>
         </div>
+
+        <style>
+            .article-header {
+                animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+
+            .article-title {
+                text-shadow: 0 0 60px rgba(100, 255, 218, 0.15);
+            }
+
+            .article-body {
+                animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+                opacity: 0;
+            }
+
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+            }
+
+            /* Enhanced code block styling */
+            .article-body :global(pre) {
+                position: relative;
+            }
+
+            .article-body :global(pre)::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, rgba(100, 255, 218, 0.5), rgba(196, 181, 253, 0.3), transparent);
+                border-radius: 12px 12px 0 0;
+            }
+
+            /* Code block line highlighting */
+            .article-body :global(pre code) {
+                display: block;
+                line-height: 1.7;
+            }
+
+            /* Better list styling */
+            .article-body :global(ul li::marker),
+            .article-body :global(ol li::marker) {
+                color: rgba(100, 255, 218, 0.6);
+            }
+
+            /* Blockquote enhancement */
+            .article-body :global(blockquote) {
+                position: relative;
+            }
+
+            .article-body :global(blockquote p) {
+                margin: 0;
+            }
+        </style>
     </body>
 </html>

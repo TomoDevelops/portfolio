@@ -75,7 +75,7 @@ export default function ContactForm() {
     return (
         <form
             id="contact-form"
-            className="grid gap-4 max-w-xl"
+            className="grid gap-5 max-w-xl"
             onSubmit={submitContactForm}
         >
             <div className="grid gap-2 sm:grid-cols-2">
@@ -89,7 +89,7 @@ export default function ContactForm() {
                         value={form.name}
                         onChange={handleChange}
                         autoComplete="name"
-                        className="h-11 rounded border border-lightest-navy/70 bg-lightest-navy/15 px-4 font-mono text-sm text-lightest-slate placeholder:text-slate/60 outline-none focus:border-green/70 focus:ring-2 focus:ring-green/25 transition"
+                        className="h-12 rounded-md border border-lightest-navy/50 bg-light-navy/30 px-4 font-mono text-sm text-lightest-slate placeholder:text-slate/50 outline-none focus:border-green/60 focus:ring-2 focus:ring-green/20 focus:bg-light-navy/40 transition-all duration-300"
                         placeholder={t("contact.form.name_placeholder")}
                     />
                 </label>
@@ -105,7 +105,7 @@ export default function ContactForm() {
                         onChange={handleChange}
                         autoComplete="email"
                         inputMode="email"
-                        className="h-11 rounded border border-lightest-navy/70 bg-lightest-navy/15 px-4 font-mono text-sm text-lightest-slate placeholder:text-slate/60 outline-none focus:border-green/70 focus:ring-2 focus:ring-green/25 transition"
+                        className="h-12 rounded-md border border-lightest-navy/50 bg-light-navy/30 px-4 font-mono text-sm text-lightest-slate placeholder:text-slate/50 outline-none focus:border-green/60 focus:ring-2 focus:ring-green/20 focus:bg-light-navy/40 transition-all duration-300"
                         placeholder={t("contact.form.email_placeholder")}
                     />
                 </label>
@@ -121,7 +121,7 @@ export default function ContactForm() {
                     value={form.subject}
                     onChange={handleChange}
                     autoComplete="off"
-                    className="h-11 rounded border border-lightest-navy/70 bg-lightest-navy/15 px-4 font-mono text-sm text-lightest-slate placeholder:text-slate/60 outline-none focus:border-green/70 focus:ring-2 focus:ring-green/25 transition"
+                    className="h-12 rounded-md border border-lightest-navy/50 bg-light-navy/30 px-4 font-mono text-sm text-lightest-slate placeholder:text-slate/50 outline-none focus:border-green/60 focus:ring-2 focus:ring-green/20 focus:bg-light-navy/40 transition-all duration-300"
                     placeholder={t("contact.form.subject_placeholder")}
                 />
             </label>
@@ -135,7 +135,7 @@ export default function ContactForm() {
                     value={form.message}
                     onChange={handleChange}
                     rows={5}
-                    className="min-h-[9rem] resize-y rounded border border-lightest-navy/70 bg-lightest-navy/15 px-4 py-3 font-mono text-sm text-lightest-slate placeholder:text-slate/60 outline-none focus:border-green/70 focus:ring-2 focus:ring-green/25 transition"
+                    className="min-h-[10rem] resize-y rounded-md border border-lightest-navy/50 bg-light-navy/30 px-4 py-3 font-mono text-sm text-lightest-slate placeholder:text-slate/50 outline-none focus:border-green/60 focus:ring-2 focus:ring-green/20 focus:bg-light-navy/40 transition-all duration-300"
                     placeholder={t("contact.form.message_placeholder")}
                 />
             </label>
@@ -143,6 +143,7 @@ export default function ContactForm() {
             {/* Honeypot field - invisible to humans */}
             <div className="sr-only" aria-hidden="true">
                 <label htmlFor="website-field">
+                    Website
                     <input
                         id="website-field"
                         type="text"
@@ -158,7 +159,7 @@ export default function ContactForm() {
             <div className="flex flex-wrap items-center gap-3">
                 <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded border border-green/70 bg-green/5 px-7 py-3.5 font-mono text-sm sm:text-base text-green hover:bg-green/10 hover:border-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green/40 transition-colors disabled:opacity-60 disabled:hover:bg-green/5 disabled:hover:border-green/70"
+                    className="btn-primary inline-flex items-center gap-2 rounded-md border border-green/70 bg-green/5 px-7 py-3.5 font-mono text-sm sm:text-base text-green hover:bg-green/10 hover:border-green hover:shadow-[0_0_25px_rgba(100,255,218,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green/40 transition-all duration-300 disabled:opacity-60 disabled:hover:bg-green/5 disabled:hover:border-green/70 disabled:hover:shadow-none"
                     disabled={status === "sending"}
                 >
                     {status === "sending" ? (

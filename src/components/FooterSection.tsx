@@ -65,7 +65,7 @@ export default function FooterSection() {
                                     );
                                 })}
                             </div>
-                            <div className="space-y-2 text-slate/60">
+                            <div className="space-y-2 text-slate/80">
                                 <p>{t("footer.built_with")}</p>
                                 <p>{t("footer.copyright")}</p>
                             </div>

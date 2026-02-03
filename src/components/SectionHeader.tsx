@@ -12,7 +12,7 @@ export default function SectionHeader({ number, title, subtitle, children }: Sec
         <div className="flex items-start gap-3">
             <div className="min-w-0 flex-1">
                 <div className="flex items-baseline gap-3">
-                    <span className="font-mono text-xs sm:text-sm text-slate/50">
+                    <span className="font-mono text-xs sm:text-sm text-slate/70">
                         {number}
                     </span>
                     <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-lightest-slate">

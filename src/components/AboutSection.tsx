@@ -70,7 +70,7 @@ export default function AboutSection() {
                             </div>
 
                             <div className="space-y-4">
-                                <div className="text-xs font-mono uppercase tracking-widest text-slate/60">
+                                <div className="text-xs font-mono uppercase tracking-widest text-slate/70">
                                     Interests
                                 </div>
                                 <div

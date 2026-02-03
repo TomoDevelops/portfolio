@@ -81,7 +81,7 @@ export default function FeaturedProjects() {
                                                     {tags.map((tag) => (
                                                         <span
                                                             key={tag}
-                                                            className="px-2.5 py-1 text-xs font-mono rounded-md border border-lightest-navy/40 text-slate/70 bg-lightest-navy/15 group-hover:border-green/20 group-hover:text-slate/90 transition-all duration-300"
+                                                            className="px-2.5 py-1 text-xs font-mono rounded-md border border-lightest-navy/40 text-slate/80 bg-lightest-navy/15 group-hover:border-green/20 group-hover:text-slate/90 transition-all duration-300"
                                                         >
                                                             {tag}
                                                         </span>

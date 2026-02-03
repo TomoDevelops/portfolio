@@ -77,7 +77,7 @@ export default function HeroSection() {
                         </div>
 
                         <p
-                            className={`text-slate/60 font-mono text-xs sm:text-sm transition-all duration-700 delay-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                            className={`text-slate/80 font-mono text-xs sm:text-sm transition-all duration-700 delay-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                             }`}
                         >
@@ -102,7 +102,7 @@ export default function HeroSection() {
 
             {/* Scroll Indicator */}
             <div
-                className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate/50 transition-all duration-700 delay-700 ${
+                className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate/70 transition-all duration-700 delay-700 ${
                     mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >

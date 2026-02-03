@@ -70,7 +70,7 @@ export default function App() {
                 >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(100,255,218,0.18),_transparent_55%)]" />
                     <div className="relative flex flex-col items-center gap-6">
-                        <div className="text-[10px] uppercase tracking-[0.5em] text-slate/70">
+                        <div className="text-[10px] uppercase tracking-[0.5em] text-slate/80">
                             Loading
                         </div>
                         <div className="loader-bars" aria-hidden="true">
@@ -79,7 +79,7 @@ export default function App() {
                             <span className="loader-bar loader-bar-3" />
                             <span className="loader-bar loader-bar-4" />
                         </div>
-                        <div className="text-xs text-slate/60 font-mono">
+                        <div className="text-xs text-slate/80 font-mono">
                             Initializing
                         </div>
                     </div>

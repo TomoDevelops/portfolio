@@ -1,0 +1,90 @@
+{
+    "hero": {
+        "intro": "Based in Tokyo. Available for freelance and contract work.",
+        "title_prefix": "Web Developer",
+        "title_suffix": "",
+        "subtitle": "I design and build reliable web applications with a focus on clarity, performance, and long-term maintainability.",
+        "view_projects": "View Projects",
+        "contact_me": "Contact"
+    },
+    "about": {
+        "title": "About",
+        "description": "I am a web developer with experience building frontend and backend systems for small teams and individual projects.\n\nMy focus is on writing clear code, understanding requirements accurately, and delivering stable features that are easy to maintain.",
+        "gaming": {
+            "title": "Gaming",
+            "desc": "FPS, Pixel Art, Monster Hunter."
+        },
+        "anime": {
+            "title": "Anime/Manga",
+            "desc": "One Piece, Naruto, Bleach."
+        },
+        "basketball": {
+            "title": "Basketball",
+            "desc": "Court player and stats analyst."
+        },
+        "values_title": "What I value in my work:",
+        "values": [
+            "Clear communication",
+            "Predictable delivery",
+            "Simple and readable architecture"
+        ]
+    },
+    "tech_stack": {
+        "title": "Tech Stack",
+        "subtitle": "Below are the main tools and technologies I use regularly in production work. I prioritize stable, well-documented stacks depending on project needs.",
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "tools": "Tools & Others"
+    },
+    "projects": {
+        "title": "Featured Projects",
+        "subtitle": "A collection of side quests and main missions I've completed",
+        "code": "Code",
+        "demo": "Demo",
+        "items": {
+            "arimono": {
+                "title": "Arimono",
+                "desc": "An AI-powered recipe generator app that suggests recipes based on ingredients you have in your refrigerator. Built with modern web technologies for an intuitive user experience.",
+                "tags": "Nuxt, TypeScript, Tailwind, Drizzle, Supabase"
+            },
+            "yourrich": {
+                "title": "YourRich Corporation Website",
+                "desc": "Corporate website for YourRich Corporation. I implemented the provided design using WordPress, including page construction and contact form setup with proper validation and email integration.",
+                "tags": "WordPress, CSS, PHP"
+            },
+            "eitai-tech": {
+                "title": "EITAI Technology Corporation Website",
+                "desc": "Corporate website for EITAI Technology Corporation. Built a modern, responsive homepage using Next.js and Tailwind CSS, focusing on performance and clean design implementation.",
+                "tags": "Next.js, Tailwind CSS, PHP"
+            },
+            "posse": {
+                "title": "POSSE Corporation Website",
+                "desc": "Corporate website for POSSE Corporation. Developed using HTML, CSS, JavaScript, and PHP to create a professional, accessible website with custom functionality and responsive design.",
+                "tags": "HTML, CSS, JavaScript, PHP"
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "If you are looking for a web developer for a project or ongoing work, feel free to get in touch.",
+        "send_message": "Send Message",
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "subject": "Subject",
+            "message": "Message",
+            "name_placeholder": "Your name",
+            "email_placeholder": "you@example.com",
+            "subject_placeholder": "What's this about? (optional)",
+            "message_placeholder": "Tell me a bit about your project, timeline, and budget.",
+            "sending": "Sending...",
+            "success": "Thanks - I'll get back to you soon.",
+            "error_required": "Please fill in name, email, and message.",
+            "error_generic": "Something went wrong. Please try again in a moment."
+        }
+    },
+    "footer": {
+        "built_with": "Built with Astro and Tailwind CSS.",
+        "copyright": "\u00a9 2026 TomoDevelops. All rights reserved."
+    }
+}

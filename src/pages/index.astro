@@ -1,17 +1,32 @@
 ---
-
+import "../styles/main.css";
+import App from "../components/App";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content="Full-stack developer portfolio" />
+        <title>TomoDevelops</title>
+        <link
+            rel="preload"
+            href="/fonts/Terminess-Regular.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="preload"
+            href="/fonts/Terminess-Bold.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body class="antialiased selection:bg-green selection:text-navy">
+        <App client:load />
+    </body>
 </html>

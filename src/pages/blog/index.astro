@@ -1,0 +1,171 @@
+---
+import { getCollection } from "astro:content";
+import "../../styles/main.css";
+
+export const prerender = true;
+
+const allPosts = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+});
+
+// Sort by date descending
+allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(date: Date, lang: string): string {
+    return date.toLocaleDateString(lang === "ja" ? "ja-JP" : "en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+}
+---
+
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content="Blog posts by TomoDevelops" />
+        <title>Blog | TomoDevelops</title>
+        <link
+            rel="preload"
+            href="/fonts/Terminess-Regular.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="preload"
+            href="/fonts/Terminess-Bold.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body class="antialiased selection:bg-green selection:text-navy">
+        <div class="min-h-screen">
+            <header class="py-8 border-b border-lightest-navy/60">
+                <div class="max-w-3xl mx-auto px-6 sm:px-8">
+                    <a
+                        href="/"
+                        class="text-slate/70 hover:text-green transition-colors font-mono text-sm"
+                    >
+                        &larr; Back to Home
+                    </a>
+                </div>
+            </header>
+
+            <main class="py-16 sm:py-20">
+                <div class="max-w-3xl mx-auto px-6 sm:px-8">
+                    <div class="mb-12">
+                        <h1 class="text-4xl sm:text-5xl font-bold text-lightest-slate tracking-tight">
+                            Blog
+                        </h1>
+                        <p class="mt-4 text-slate text-lg">
+                            Thoughts on web development, projects, and more.
+                        </p>
+                    </div>
+
+                    <div id="posts-container" class="space-y-8">
+                        {allPosts.map((post) => (
+                            <article class="group blog-post" data-lang={post.data.lang}>
+                                <a
+                                    href={`/blog/${post.id}`}
+                                    class="block p-6 -mx-6 rounded-lg hover:bg-light-navy/30 transition-colors"
+                                >
+                                    <div class="flex flex-col gap-3">
+                                        <time
+                                            datetime={post.data.date.toISOString()}
+                                            class="text-xs font-mono text-slate/60"
+                                            data-date={post.data.date.toISOString()}
+                                            data-lang={post.data.lang}
+                                        >
+                                            {formatDate(post.data.date, post.data.lang)}
+                                        </time>
+                                        <h2 class="text-xl sm:text-2xl font-bold text-lightest-slate group-hover:text-green transition-colors">
+                                            {post.data.title}
+                                        </h2>
+                                        <p class="text-slate/85 leading-relaxed">
+                                            {post.data.description}
+                                        </p>
+                                        {post.data.tags && post.data.tags.length > 0 && (
+                                            <div class="flex flex-wrap gap-2 pt-2">
+                                                {post.data.tags.map((tag) => (
+                                                    <span class="px-2.5 py-1 text-xs font-mono rounded border border-lightest-navy/60 text-slate/70 bg-lightest-navy/10">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+
+                    <p id="no-posts" class="text-slate/70 hidden">
+                        No posts yet. Check back soon!
+                    </p>
+                </div>
+            </main>
+
+            <footer class="py-8 border-t border-lightest-navy/60">
+                <div class="max-w-3xl mx-auto px-6 sm:px-8">
+                    <p class="text-xs text-slate/60 font-mono">
+                        &copy; 2026 TomoDevelops
+                    </p>
+                </div>
+            </footer>
+        </div>
+
+        <script>
+            function filterPostsByLocale() {
+                const locale = localStorage.getItem("locale") || "ja";
+                const posts = document.querySelectorAll(".blog-post");
+
+                // Count posts per locale
+                let preferredCount = 0;
+                let fallbackCount = 0;
+
+                posts.forEach((post) => {
+                    const postLang = post.getAttribute("data-lang");
+                    if (postLang === locale) {
+                        preferredCount++;
+                    } else if (postLang === "ja") {
+                        fallbackCount++;
+                    }
+                });
+
+                // Use preferred locale if posts exist, otherwise fall back to Japanese
+                const displayLocale = preferredCount > 0 ? locale : "ja";
+                let visibleCount = 0;
+
+                posts.forEach((post) => {
+                    const postLang = post.getAttribute("data-lang");
+                    if (postLang === displayLocale) {
+                        (post as HTMLElement).style.display = "block";
+                        visibleCount++;
+                    } else {
+                        (post as HTMLElement).style.display = "none";
+                    }
+                });
+
+                const noPosts = document.getElementById("no-posts");
+                if (noPosts) {
+                    noPosts.classList.toggle("hidden", visibleCount > 0);
+                }
+            }
+
+            // Run on page load
+            filterPostsByLocale();
+
+            // Listen for storage changes (if locale changes in another tab)
+            window.addEventListener("storage", (e) => {
+                if (e.key === "locale") {
+                    filterPostsByLocale();
+                }
+            });
+        </script>
+    </body>
+</html>

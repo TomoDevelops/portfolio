@@ -1,0 +1,88 @@
+{
+    "hero": {
+        "intro": "",
+        "title_prefix": "Web Developer",
+        "title_suffix": "",
+        "subtitle": "要件整理から実装まで、一貫して対応できる Web 開発者です。\n可読性・保守性・パフォーマンスを重視した実装を心がけています。",
+        "contact_me": "お問い合わせ"
+    },
+    "about": {
+        "title": "About",
+        "description": "Web アプリケーションのフロントエンドおよびバックエンド開発を行っています。\n小規模チームや個人開発案件を中心に、仕様理解から実装、改善まで対応してきました。\n\n要件を正確に理解し、無理のない構成で安定した機能を提供することを重視しています。\n長期的に運用しやすい設計を意識し、読みやすく整理されたコードを書くことを大切にしています。",
+        "gaming": {
+            "title": "ゲーム",
+            "desc": "FPS, ポケモン, モンスターハンター"
+        },
+        "anime": {
+            "title": "アニメ/漫画",
+            "desc": "ワンピース, ナルト, ブリーチ"
+        },
+        "basketball": {
+            "title": "バスケットボール",
+            "desc": ""
+        },
+        "values_title": "業務で大切にしていること",
+        "values": [
+            "仕様や要望の認識をすり合わせるための丁寧なコミュニケーション",
+            "進捗や課題を明確に共有すること",
+            "将来的な改修を見据えたシンプルな設計"
+        ]
+    },
+    "tech_stack": {
+        "title": "Tech Stack",
+        "subtitle": "以下は、実務で主に使用している技術スタックです。\n案件の規模や要件に応じて、安定性や保守性を重視して選定しています。",
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "tools": "Tools & Others"
+    },
+    "projects": {
+        "title": "Featured Projects",
+        "subtitle": "",
+        "demo": "Demo",
+        "items": {
+            "arimono": {
+                "title": "Arimono",
+                "desc": "冷蔵庫にある食材を入力して、AIがおすすめのレシピを生成してくれるアプリ",
+                "tags": "Nuxt, TypeScript, Tailwind, Drizzle, Supabase"
+            },
+            "yourrich": {
+                "title": "株式会社ユアリッチ",
+                "desc": "株式会社ユアリッチ社のホームページです。\nデザインを提供いただき、WordPressで各ページの構築やお問い合わせフォームの設置を行いました。",
+                "tags": "WordPress, CSS"
+            },
+            "eitai-tech": {
+                "title": "EITAIテクノロジーズ株式会社",
+                "desc": "EITAIテクノロジーズ株式会社のホームページです。\nNextとTailwindを使用したモダンなホームページの構築を行いました。",
+                "tags": "Next, Tailwind, PHP"
+            },
+            "posse": {
+                "title": "株式会社POSSE",
+                "desc": "株式会社POSSEのホームページです。\nHTML, CSS, JavaScript, PHPを使用したサイトの構築を行いました。",
+                "tags": "HTML, CSS, JavaScript, PHP"
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "Web 開発のご相談や業務のご依頼がありましたら、お気軽にご連絡ください。\n単発案件・継続案件いずれも対応可能です。",
+        "send_message": "メッセージを送る",
+        "form": {
+            "name": "お名前",
+            "email": "メールアドレス",
+            "subject": "件名",
+            "message": "本文",
+            "name_placeholder": "お名前",
+            "email_placeholder": "you@example.com",
+            "subject_placeholder": "ご用件（任意）",
+            "message_placeholder": "ご相談内容（概要・希望時期・予算感など）をお書きください。",
+            "sending": "送信中...",
+            "success": "送信しました。折り返しご連絡します。",
+            "error_required": "お名前・メールアドレス・本文は必須です。",
+            "error_generic": "送信に失敗しました。時間をおいて再度お試しください。"
+        }
+    },
+    "footer": {
+        "built_with": "Built with Astro and Tailwind CSS.",
+        "copyright": "\u00a9 2026 TomoDevelops"
+    }
+}

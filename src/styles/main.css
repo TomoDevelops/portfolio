@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --color-navy: #0a192f;
+    --color-light-navy: #112240;
+    --color-lightest-navy: #233554;
+    --color-slate: #9ba6c6;
+    --color-light-slate: #a8b2d1;
+    --color-lightest-slate: #ccd6f6;
+    --color-white: #e6f1ff;
+    --color-green: #64ffda;
+
+    --font-terminus: "Terminus", ui-monospace, SFMono-Regular, Menlo, Monaco,
+        Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@font-face {
+    font-family: "Terminus";
+    src: url("/fonts/Terminess-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Terminus";
+    src: url("/fonts/Terminess-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Terminus";
+    src: url("/fonts/Terminess-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Terminus";
+    src: url("/fonts/Terminess-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@layer base {
+    body {
+        font-family: var(--font-terminus);
+        background-color: var(--color-navy);
+        color: var(--color-slate);
+    }
+}
+
+@layer utilities {
+    .loader-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+        height: 32px;
+    }
+
+    .loader-bar {
+        width: 6px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #64ffda 0%, #2b6f60 100%);
+        animation: loader-pulse 1.1s ease-in-out infinite;
+    }
+
+    .loader-bar-1 {
+        height: 10px;
+        animation-delay: 0s;
+    }
+
+    .loader-bar-2 {
+        height: 22px;
+        animation-delay: 0.12s;
+    }
+
+    .loader-bar-3 {
+        height: 14px;
+        animation-delay: 0.24s;
+    }
+
+    .loader-bar-4 {
+        height: 26px;
+        animation-delay: 0.36s;
+    }
+
+    .loader-fade-enter {
+        opacity: 0;
+    }
+
+    .loader-fade-enter-active {
+        opacity: 1;
+        transition: opacity 300ms ease;
+    }
+
+    .loader-fade-exit {
+        opacity: 1;
+    }
+
+    .loader-fade-exit-active {
+        opacity: 0;
+        transition: opacity 300ms ease;
+    }
+}
+
+@keyframes loader-pulse {
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background-color: var(--color-green);
+    color: var(--color-navy);
+}
